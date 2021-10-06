@@ -4,23 +4,51 @@ import ListItem from "./ListItem";
 import { TodoContext } from "../context/TodoContext";
 
 function ListContainer() {
-  const { todo } = useContext(TodoContext);
-  console.log(todo);
+  const { todo, setTodo } = useContext(TodoContext);
+
+  const markAsDone = (id) => {
+    const updatedTodo = todo.map((t) => {
+      if (t.id === id) {
+        t.done = !t.done;
+      }
+      return t;
+    });
+    setTodo(updatedTodo);
+  };
+
+  const deleteTodo = (id) => {
+    const todoToDelete = todo.findIndex((t) => t.id === id);
+    const todoCopy = [...todo];
+    todoCopy.splice(todoToDelete, 1);
+    setTodo(todoCopy);
+  };
+
+  const clearCompleted = () => {
+    const updatedTodos = todo.filter((t) => t.done === false);
+    setTodo(updatedTodos);
+  };
+
   return (
     <Ul>
       {todo.map((t) => (
-        <ListItem text={t.text} done={t.done} key={t.id} />
+        <ListItem
+          text={t.text}
+          done={t.done}
+          key={t.id}
+          finishTodo={() => markAsDone(t.id)}
+          onDelete={() => deleteTodo(t.id)}
+        />
       ))}
 
       <div className="list-footer">
-        <span>items left</span>
+        <span>{todo.length} items left</span>
         <span className="btns">
           <button>All</button>
           <button>Active</button>
           <button>Completed</button>
         </span>
         <span>
-          <button>Clear completed</button>
+          <button onClick={clearCompleted}>Clear completed</button>
         </span>
       </div>
     </Ul>
