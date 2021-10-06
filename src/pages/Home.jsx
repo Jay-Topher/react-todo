@@ -39,7 +39,6 @@ const Main = styled.main`
 
   .home-page {
     padding: 5rem;
-    border: 1px solid #fff;
     color: ${({ theme }) => theme.text};
 
     .home-page-header {
