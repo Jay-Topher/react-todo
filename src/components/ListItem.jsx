@@ -3,11 +3,11 @@ import styled from "styled-components";
 import closeIcon from "../images/icon-cross.svg";
 import checkIcon from "../images/icon-check.svg";
 
-function ListItem({ text, done, onDelete }) {
+function ListItem({ text, done, onDelete, finishTodo }) {
   return (
     <List className={`list-item ${done ? "done" : ""}`}>
       <span className="radio" />
-      <p>{text}</p>
+      <p onClick={finishTodo}>{text}</p>
       <button className="close-btn" onClick={onDelete} />
     </List>
   );
@@ -57,6 +57,7 @@ const List = styled.li`
 
   p {
     margin: 0;
+    flex: 1;
   }
 `;
 
