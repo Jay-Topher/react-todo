@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import ListItem from "./ListItem";
 import { TodoContext } from "../context/TodoContext";
 
 function ListContainer() {
   const { todo, setTodo } = useContext(TodoContext);
+  const [filtered, setFiltered] = useState([]);
 
   const markAsDone = (id) => {
     const updatedTodo = todo.map((t) => {
@@ -25,12 +26,18 @@ function ListContainer() {
 
   const clearCompleted = () => {
     const updatedTodos = todo.filter((t) => t.done === false);
+    setFiltered([]);
     setTodo(updatedTodos);
+  };
+
+  const filterActive = () => {
+    const updatedTodos = todo.filter((t) => t.done === false);
+    setFiltered(updatedTodos);
   };
 
   return (
     <Ul>
-      {todo.map((t) => (
+      {(filtered.length ? filtered : todo).map((t) => (
         <ListItem
           text={t.text}
           done={t.done}
@@ -44,7 +51,7 @@ function ListContainer() {
         <span>{todo.length} items left</span>
         <span className="btns">
           <button>All</button>
-          <button>Active</button>
+          <button onClick={filterActive}>Active</button>
           <button>Completed</button>
         </span>
         <span>
