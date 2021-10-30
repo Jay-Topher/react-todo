@@ -35,6 +35,11 @@ function ListContainer() {
     setFiltered(updatedTodos);
   };
 
+  const filterCompleted = () => {
+    const completedTodos = todo.filter((t) => t.done);
+    setFiltered(completedTodos);
+  };
+
   return (
     <Ul>
       {(filtered.length ? filtered : todo).map((t) => (
@@ -52,7 +57,7 @@ function ListContainer() {
         <span className="btns">
           <button>All</button>
           <button onClick={filterActive}>Active</button>
-          <button>Completed</button>
+          <button onClick={filterCompleted}>Completed</button>
         </span>
         <span>
           <button onClick={clearCompleted}>Clear completed</button>
