@@ -62,6 +62,7 @@ const Main = styled.main`
         width: 25px;
         background-repeat: no-repeat;
         background-position: center;
+        cursor: pointer;
       }
     }
 
@@ -73,7 +74,7 @@ const Main = styled.main`
         padding: 1rem 2rem;
         border-radius: 5px;
         box-shadow: hsla(235, 21%, 11%, 0.25) 0px 25px 50px -12px;
-        font-family: 'Josefin Sans', sans-serif;
+        font-family: "Josefin Sans", sans-serif;
 
         input {
           background: transparent;
@@ -81,7 +82,7 @@ const Main = styled.main`
           border: none;
           font-size: 1.125rem;
           color: ${({ theme }) => theme.text};
-          font-family: 'Josefin Sans', sans-serif;
+          font-family: "Josefin Sans", sans-serif;
 
           &:focus {
             outline: none;
