@@ -40,6 +40,10 @@ function ListContainer() {
     setFiltered(completedTodos);
   };
 
+  const getAllTodos = () => {
+    setFiltered([]);
+  };
+
   return (
     <Ul>
       {(filtered.length ? filtered : todo).map((t) => (
@@ -55,7 +59,7 @@ function ListContainer() {
       <div className="list-footer">
         <span>{todo.length} items left</span>
         <span className="btns">
-          <button>All</button>
+          <button onClick={getAllTodos}>All</button>
           <button onClick={filterActive}>Active</button>
           <button onClick={filterCompleted}>Completed</button>
         </span>
